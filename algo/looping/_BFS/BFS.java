@@ -1,2 +1,4 @@
-package algo.looping._BFS;public class BFS {
+package algo.looping._BFS;
+
+public class BFS {
 }

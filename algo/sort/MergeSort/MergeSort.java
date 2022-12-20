@@ -15,6 +15,7 @@ public class MergeSort extends ArrayGen{
         left2 = mid + 1;
         idx = 0;
 
+        //merging two arrays
         while (left1 < mid + 1 || left2 < right + 1){
             if (left1 == mid + 1){
                 mergeArr[idx] = arr[left2];
@@ -35,6 +36,7 @@ public class MergeSort extends ArrayGen{
             idx++;
         }
 
+        //copy element
         for (int i = left; i <= right; i++){
             arr[i] = mergeArr[i - left];
         }
