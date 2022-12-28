@@ -1,0 +1,38 @@
+//get in-degree
+int[] degree[n]
+for (i = 0 to n):
+    node = Graph[i]
+    while (node != null){
+        degree[node.vertex] ++;
+        node = node.next
+    }
+
+//push node with 0 degree first
+ArrayList<Integer> dfsStore
+boolean[] visit[n]
+
+for (i = 0 to n):
+    if degree[i] = 0:
+        dfsStore.add(i)
+        visit[i] = true
+
+//sorting
+idx = 0
+while idx < dfsStore.size
+    int curNode = dfsStore[idx]
+    idx++
+
+    //handle child
+    node = Graph[curNode]
+    while (node != null)
+        if !visit[node.vertex]
+            degree[node.vertex]--
+            if (degree[node.vertex] == 0
+                visit[node.vertex] = true
+                dfsStore.add(node.vertex)
+
+        node = node.next
+
+
+
+

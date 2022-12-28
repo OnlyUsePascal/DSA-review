@@ -1,8 +1,6 @@
 package data_structure.Heap;
 
-import algo.sort.*;
-
-import java.lang.reflect.Array;
+import algo.Sort.*;
 
 public class Heap {
     //default max heap
