@@ -4,38 +4,38 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class AdjacencyList {
-    public class Node{
+    static public class Node{
         public int vertex;
-        int weight;
+        public int weight;
         public Node next;
 
-        Node(int v, int w){
+        protected Node(int v, int w){
             vertex = v;
             weight = w;
             next = null;
         }
 
 
-        void printALll(){
+        public void printAll(){
             System.out.println(vertex + " " + weight);
         }
     }
 
     public Node[] graphStore;
-
+    public int n,e;
 
     public AdjacencyList(boolean undirected) throws FileNotFoundException{
         System.out.println("=== Adjacency List ===");
 
         //input maze
-        File file = new File("src/graph/GraphGen/GraphInput.txt");
-        Scanner reader = new Scanner(file);
-        graphStore = new Node[reader.nextInt()];
+        Scanner reader = new Scanner(new File("src/graph/GraphGen/GraphInput.txt"));
+        n  = reader.nextInt();
+        graphStore = new Node[n];
 
         //reading edges
-        int edges = reader.nextInt();
+        e = reader.nextInt();
         reader.nextLine();
-        for (int i = 0 ; i < edges; i++){
+        for (int i = 0 ; i < e; i++){
             //invert string to number
             String[] strArr = reader.nextLine().split(" ");
             int[] intArr = new int[3];
@@ -66,15 +66,15 @@ public class AdjacencyList {
             Node node = graphStore[i];
             System.out.println(i + "--");
             while (node != null){
-                node.printALll();
+                node.printAll();
                 node = node.next;
             }
         }
     }
 
 
-    public static void main(String[] args) throws FileNotFoundException {
-        AdjacencyList ex = new AdjacencyList(false);
+    static public  void main(String[] args) throws FileNotFoundException {
+        AdjacencyList ex = new AdjacencyList(true);
         ex.printAll();
 
     }

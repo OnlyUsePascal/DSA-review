@@ -6,18 +6,19 @@ import java.util.Scanner;
 
 public class AdjacencyMatrix {
     public int[][] graphStore;
+    public int n,e;
 
     public AdjacencyMatrix(boolean undirected) throws FileNotFoundException{
         System.out.println("=== Adjacency Matrix ===");
 
         //read input file
         Scanner reader = new Scanner(new File("src/graph/GraphGen/GraphInput.txt"));
-        int sz = reader.nextInt();
-        graphStore = new int[sz][sz];
+        n = reader.nextInt();
+        graphStore = new int[n][n];
 
-        int edge = reader.nextInt();
+        e = reader.nextInt();
         reader.nextLine();
-        for (int i = 0 ; i < edge; i++){
+        for (int i = 0 ; i < e; i++){
             //invert string to number
             String[] strArr = reader.nextLine().split(" ");
             int[] intArr = new int[3];

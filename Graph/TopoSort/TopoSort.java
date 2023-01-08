@@ -71,18 +71,6 @@ public class TopoSort {
 
     boolean[] visit;
     int sz;
-    void findParent(int curNode){
-        //print the parent of node before printing it
-
-        for (int par = 0; par < sz; par++){
-            if (!visit[par] && graph2.graphStore[par][curNode] != 0){
-                visit[par] = true;
-                findParent(par);
-            }
-        }
-
-        System.out.print(curNode + " -> ");
-    }
 
 
     void getSort2(){ //using dfs
@@ -99,6 +87,20 @@ public class TopoSort {
             }
         }
 
+    }
+
+
+    void findParent(int curNode){
+        //print the parent of node before printing it
+
+        for (int par = 0; par < sz; par++){
+            if (!visit[par] && graph2.graphStore[par][curNode] != 0){
+                visit[par] = true;
+                findParent(par);
+            }
+        }
+
+        System.out.print(curNode + " -> ");
     }
 
 
