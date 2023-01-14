@@ -12,8 +12,8 @@ public class TopoSort {
     AdjacencyMatrix graph2;
 
     TopoSort() throws FileNotFoundException {
-        graph1 = new AdjacencyList(false);
-        graph2 = new AdjacencyMatrix(false);
+        graph1 = new AdjacencyList("src/Graph/TopoSort/input",false);
+        graph2 = new AdjacencyMatrix("src/Graph/TopoSort/input",false);
     }
 
 
@@ -26,10 +26,10 @@ public class TopoSort {
         int graphSize = graph1.graphStore.length;
         int[] indeg = new int[graphSize];
         for (int i = 0; i < graphSize; i++) {
-            AdjacencyList.Node node = graph1.graphStore[i];
-            while (node != null) {
-                indeg[node.vertex]++;
-                node = node.next;
+            AdjacencyList.Node child = graph1.graphStore[i];
+            while (child != null) {
+                indeg[child.vertex]++;
+                child = child.next;
             }
         }
 

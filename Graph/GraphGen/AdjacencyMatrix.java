@@ -8,11 +8,11 @@ public class AdjacencyMatrix {
     public int[][] graphStore;
     public int n,e;
 
-    public AdjacencyMatrix(boolean undirected) throws FileNotFoundException{
+    public AdjacencyMatrix(String src, boolean undirected) throws FileNotFoundException{
         System.out.println("=== Adjacency Matrix ===");
 
         //read input file
-        Scanner reader = new Scanner(new File("src/graph/GraphGen/GraphInput.txt"));
+        Scanner reader = new Scanner(new File(src));
         n = reader.nextInt();
         graphStore = new int[n][n];
 
@@ -42,7 +42,7 @@ public class AdjacencyMatrix {
 
 
     public static void main(String[] args) throws FileNotFoundException {
-        AdjacencyMatrix ex = new AdjacencyMatrix(false);
+        AdjacencyMatrix ex = new AdjacencyMatrix("src/graph/GraphGen/GraphInput.txt", false);
         ex.printAll();
     }
 }

@@ -10,14 +10,14 @@ public class BFS {
     AdjacencyList graph;
 
     BFS() throws FileNotFoundException {
-        graph = new AdjacencyList(true);
+        System.out.println("=== bfs - shortest path ===");
+        graph = new AdjacencyList("src/Graph/ShortestPath/input",true);
     }
 
 
     //O(N^2)
     void getPath(int start, int goal){
         //main -- bfs
-        System.out.println("=== bfs - shortest path ===");
         Queue<Integer> bfsStack = new LinkedList<>();
 
         //default inf distance for each destination

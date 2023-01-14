@@ -8,7 +8,7 @@ import java.util.PriorityQueue;
 public class Prim {
     AdjacencyList graph;
     Prim() throws FileNotFoundException {
-        graph = new AdjacencyList(true);
+        graph = new AdjacencyList("src/Graph/SmallestSpanningTree/input",true);
     }
 
     class Node extends AdjacencyList.Node implements Comparable<Node>{

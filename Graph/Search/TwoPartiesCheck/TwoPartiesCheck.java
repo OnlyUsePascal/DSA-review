@@ -14,13 +14,13 @@ public class TwoPartiesCheck {
     int sz;
 
     TwoPartiesCheck() throws FileNotFoundException {
-        graph1 = new AdjacencyList(true);
-        graph2 = new AdjacencyMatrix(true);
+        graph1 = new AdjacencyList("src/Graph/Search/input",true);
+        graph2 = new AdjacencyMatrix("src/Graph/Search/input",true);
         sz = graph1.graphStore.length;
     }
 
 
-    void check1(){
+    void check(){
         //for list
         System.out.println("=== two parties check ===");
         StackLinkedList<Integer> dfsStack = new StackLinkedList<>();

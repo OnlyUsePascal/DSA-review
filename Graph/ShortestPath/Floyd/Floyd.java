@@ -9,7 +9,8 @@ public class Floyd {
     AdjacencyMatrix graph;
 
     Floyd() throws FileNotFoundException {
-        graph = new AdjacencyMatrix(true);
+        System.out.println("=== floyd - shortest path ===");
+        graph = new AdjacencyMatrix("src/Graph/ShortestPath/input",true);
     }
 
 
@@ -26,7 +27,7 @@ public class Floyd {
         //for each intermediate node k
             //for each couple node i, j
                 //dis[i -> j] = min(dis[i -> j], dis[i -> k] + dis[k -> j])
-        System.out.println("=== floyd - shortest path ===");
+
         //init distance
         int[][] dis = new int[graph.n][graph.n];
         for (int i = 0 ; i < graph.n; i++){

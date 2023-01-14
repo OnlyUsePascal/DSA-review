@@ -24,11 +24,11 @@ public class AdjacencyList {
     public Node[] graphStore;
     public int n,e;
 
-    public AdjacencyList(boolean undirected) throws FileNotFoundException{
+    public AdjacencyList(String src, boolean undirected) throws FileNotFoundException{
         System.out.println("=== Adjacency List ===");
 
         //input maze
-        Scanner reader = new Scanner(new File("src/graph/GraphGen/GraphInput.txt"));
+        Scanner reader = new Scanner(new File(src));
         n  = reader.nextInt();
         graphStore = new Node[n];
 
@@ -74,7 +74,7 @@ public class AdjacencyList {
 
 
     static public  void main(String[] args) throws FileNotFoundException {
-        AdjacencyList ex = new AdjacencyList(true);
+        AdjacencyList ex = new AdjacencyList("src/graph/GraphGen/GraphInput.txt", true);
         ex.printAll();
 
     }

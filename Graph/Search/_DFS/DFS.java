@@ -11,8 +11,8 @@ public class DFS {
 
     DFS() throws FileNotFoundException {
         System.out.println("=== DFS ===");
-        graphList = new AdjacencyList(true);
-        graphMatrix = new AdjacencyMatrix(true);
+        graphList = new AdjacencyList("src/Graph/Search/input",true);
+        graphMatrix = new AdjacencyMatrix("src/Graph/Search/input",true);
     }
 
     void dfsAdjacencyList(){

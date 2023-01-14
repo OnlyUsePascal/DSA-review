@@ -11,14 +11,14 @@ public class Kruskal {
 
     Kruskal() throws FileNotFoundException {
         //adjacency matrix + undirected
-        graph = new AdjacencyMatrix(true);
+        System.out.println("=== kruskal - smallest spanning tree ===");
+        graph = new AdjacencyMatrix("src/Graph/SmallestSpanningTree/input",true);
     }
 
 
     //way 1: sort all edge
     // -> take first n-1 edge that connect n nodes
     void getTree1(){
-        System.out.println("=== kruskal - smallest spanning tree ===");
         //get list of edge
         Edge[] edgeList = new Edge[graph.e];
         int edgeIdx = 0;
