@@ -1,6 +1,6 @@
 package data_structure.Heap;
 
-import algo.Sort.*;
+import algo.*;
 
 public class Heap {
     //default max heap
@@ -99,8 +99,8 @@ public class Heap {
         int sz = 10;
         Heap s = new Heap(sz);
 
-        ArrayGen t = new ArrayGen(sz);
-        for (int k : t.arr){
+        int[] input = (new ArrayGen()).getArr(sz);
+        for (int k : input){
             s.insertHeap(k);
         }
 

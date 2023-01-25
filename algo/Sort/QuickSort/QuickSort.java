@@ -1,9 +1,18 @@
 package algo.Sort.QuickSort;
-import algo.Sort.ArrayGen;
+import algo.ArrayGen;
 
-public class QuickSort extends ArrayGen{
-    QuickSort(int _sz){
-        super(_sz);
+import java.util.Arrays;
+
+public class QuickSort {
+
+    public QuickSort(){
+    }
+
+    int[] arr;
+    public void sorting(int[] _arr){
+        arr = _arr;
+        handle(0, arr.length - 1);
+//        _arr = arr;
     }
 
 
@@ -20,8 +29,6 @@ public class QuickSort extends ArrayGen{
             while (left <= right && arr[left] <= arr[pivot]){
                 left++;
             }
-
-
             while (left <= right && arr[right] > arr[pivot]){
                 right--;
             }
@@ -46,17 +53,10 @@ public class QuickSort extends ArrayGen{
     }
 
 
-    void sorting(){
-        System.out.println("=== Quick sort ===");
-        handle(0, arr.length - 1);
-        System.out.println("Done    ");
-    }
-
-
     public static void main(String[] args) {
-        QuickSort s = new QuickSort(10);
-        s.printAll();
-        s.sorting();
-        s.printAll();
+        int[] arr = (new ArrayGen()).getArr(10);
+        System.out.println(Arrays.toString(arr));
+        (new QuickSort()).sorting(arr);
+        System.out.println(Arrays.toString(arr));
     }
 }

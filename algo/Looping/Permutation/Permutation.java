@@ -4,70 +4,42 @@ import java.util.Arrays;
 
 public class Permutation {
     int[] arr;
+    Permutation(int[] input){
+        arr = input;
+    }
 
-    Permutation(int n){
-        arr = new int[n];
-        for (int i = 0 ; i < n ; i++){
-            arr[i] = i;
+
+    static void processArr(int[] permutation) {
+        System.out.println("Permutation: " + Arrays.toString(permutation));
+    }
+
+
+    static void permute(int[] input, boolean[] taken, int[] current, int idx) {
+        if (idx == input.length) {
+            processArr(current);
+            return;
         }
-    }
 
-
-    void swap(int i1, int i2){
-        int mid = arr[i1];
-        arr[i1] = arr[i2];
-        arr[i2] = mid;
-    }
-
-
-    void reverse(int l, int r){
-        while (l <= r){
-            swap(l,r);
-            l++;
-            r--;
-        }
-    }
-
-
-    void permutate(){
-        System.out.println("=== Permutation ===");
-        //59876 -> 625789
-        boolean capable = true;
-        while (capable){
-            printAll();
-            capable = false;
-
-            //find change point
-            int idx;
-            for (idx = arr.length - 1; idx > 0; idx--){
-                if (arr[idx] > arr[idx-1]){
-                    capable = true;
-                    break;
-                }
+        for (int i = 0; i < input.length; i++) {
+            if (taken[i]) {
+                continue;
             }
-
-            //can permutate
-            if (capable){
-                int idx2 = arr.length - 1;
-                while (arr[idx2] < arr[idx-1]) idx2--;
-
-                //swap
-                swap(idx-1, idx2);
-
-                //reverse
-                reverse(idx, arr.length -1);
-            }
+            current[idx] = input[i];
+            taken[i] = true;
+            permute(input, taken, current, idx + 1);
+            taken[i] = false;
         }
     }
 
 
-    void printAll(){
-        System.out.println(Arrays.toString(arr));
+    void getPermutation(){
+        int n = arr.length;
+        permute(arr, new boolean[n], new int[n], 0);
     }
 
 
     public static void main(String[] args) {
-        Permutation ex = new Permutation(3);
-        ex.permutate();
+        int[] input = {1, 2, 3};
+        (new Permutation(input)).getPermutation();
     }
 }

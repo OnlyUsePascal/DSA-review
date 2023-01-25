@@ -1,13 +1,24 @@
 package algo.DivideAndConquer.QuickSelect;
-import algo.Sort.ArrayGen;
+import algo.ArrayGen;
 
-public class QuickSelect extends ArrayGen{
+import java.util.Arrays;
+
+public class QuickSelect{
     //find element at index n
-    QuickSelect(int sz){
-        super(sz);
+    QuickSelect(){
     }
 
     int goal;
+    int[] arr;
+
+
+    void getNth(int[] _arr, int _goal){
+        System.out.println("=== Get element at index: " + _goal + " ===");
+        goal = _goal;
+        arr = _arr;
+        System.out.println(findNth(0, arr.length - 1));
+    }
+
 
     int findNth(int start, int end){
         if (start >= end) return arr[start]; //only have 1 element
@@ -22,8 +33,6 @@ public class QuickSelect extends ArrayGen{
             while (left <= right && arr[left] <= arr[pivot]){
                 left++;
             }
-
-
             while (left <= right && arr[right] > arr[pivot]){
                 right--;
             }
@@ -56,17 +65,10 @@ public class QuickSelect extends ArrayGen{
     }
 
 
-    void getNth(int _goal){
-        System.out.println("=== Get element at index: " + _goal + " ===");
-        goal = _goal;
-        System.out.println(findNth(0, arr.length - 1));
-    }
-
-
     public static void main(String[] args) {
-        QuickSelect s = new QuickSelect(10);
-        s.printAll();
-        s.getNth(3);
+        int[] input = (new ArrayGen()).getArr(10);
+        System.out.println(Arrays.toString(input));
+        (new QuickSelect()).getNth(input, 3);
     }
 
 }

@@ -1,18 +1,15 @@
 package algo.Sort.HeapSort;
 
 
-import algo.Sort.ArrayGen;
-import data_structure.Heap.*;
+import algo.ArrayGen;
+import data_structure.Heap.Heap;
 
-public class HeapSort extends ArrayGen {
-    HeapSort(int _sz){
-        super(_sz);
-    }
+import java.util.Arrays;
 
+public class HeapSort  {
+    HeapSort(){}
 
-    void sorting(){
-        System.out.println("=== Heap Sort ===");
-
+    void sorting(int[] arr){
         //initialize heap
         Heap heapArr = new Heap(arr.length);
 
@@ -25,15 +22,13 @@ public class HeapSort extends ArrayGen {
             arr[i] = heapArr.arr[0];
             heapArr.removeHeap();
         }
-
-        System.out.println("Done");
     }
 
 
     public static void main(String[] args) {
-        HeapSort s = new HeapSort(10);
-        s.printAll();
-        s.sorting();
-        s.printAll();
+        int[] arr = (new ArrayGen()).getArr(10);
+        System.out.println(Arrays.toString(arr));
+        (new HeapSort()).sorting(arr);
+        System.out.println(Arrays.toString(arr));
     }
 }

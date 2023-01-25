@@ -1,73 +1,67 @@
 package algo.Sort.MergeSort;
-import algo.Sort.*;
 
-public class MergeSort extends ArrayGen{
-    MergeSort(int _sz){
-        super(_sz);
+import algo.ArrayGen;
+import algo.Sort.QuickSort.QuickSort;
+
+import java.util.Arrays;
+
+public class MergeSort{
+    MergeSort(){
     }
 
 
-    void merge(int left, int right, int mid){
-        int[] mergeArr = new int[right - left + 1];
-        int left1, left2, idx;
+    void sorting(int[] arr){
+        if (arr.length > 1) {
+            int n = arr.length;
+            int middle = n / 2;
 
-        left1 = left;
-        left2 = mid + 1;
-        idx = 0;
+            // create 2 sub-arrays from arr
+            int[] sub1 = new int[middle];
+            for (int i = 0; i < middle; i++) {
+                sub1[i] = arr[i];
+            }
+            int[] sub2 = new int[n - middle];
+            for (int i = middle; i < n; i++) {
+                sub2[i - middle] = arr[i];
+            }
 
-        //merging two arrays
-        while (left1 < mid + 1 || left2 < right + 1){
-            if (left1 == mid + 1){
-                mergeArr[idx] = arr[left2];
-                left2++;
-            }
-            else if (left2 == right+1) {
-                mergeArr[idx] = arr[left1];
-                left1++;
-            }
-            else if (arr[left1] >= arr[left2]){
-                mergeArr[idx] = arr[left2];
-                left2++;
-            }
-            else{
-                mergeArr[idx] = arr[left1];
-                left1++;
-            }
-            idx++;
-        }
+            // sort first and second halves
+            sorting(sub1);
+            sorting(sub2);
 
-        //copy element
-        for (int i = left; i <= right; i++){
-            arr[i] = mergeArr[i - left];
+            // merge sub1 and sub2 into the original array
+            merge(sub1, sub2, arr);
         }
     }
 
 
-    void sort(int left, int right){
-        //no need sort if length = 1
-        if (left >= right) return;
+    void merge(int[] sub1, int[] sub2, int[] dest) {
+        int p1 = 0, p2 = 0, pDest = 0;  // pointers to 3 arrays
+        while (p1 < sub1.length && p2 < sub2.length) {
+            if (sub1[p1] <= sub2[p2]) {
+                dest[pDest] = sub1[p1];
+                p1++;
+            } else {
+                dest[pDest] = sub2[p2];
+                p2++;
+            }
+            pDest++;
+        }
 
-        int mid = (left + right) / 2;
-        //handle left side & right side
-        sort(left, mid);
-        sort(mid+1, right);
-
-        //merge
-        merge(left, right, mid);
-    }
-
-
-    void sorting(){
-        System.out.println("=== Merge Sort ===");
-        sort(0, arr.length-1);
-        System.out.println("Done");
+        // copy remaining elements, if any
+        while (p1 < sub1.length) {
+            dest[pDest++] = sub1[p1++];
+        }
+        while (p2 < sub2.length) {
+            dest[pDest++] = sub2[p2++];
+        }
     }
 
 
     public static void main(String[] args) {
-        MergeSort s = new MergeSort(10);
-        s.printAll();
-        s.sorting();
-        s.printAll();
+        int[] arr = (new ArrayGen()).getArr(10);
+        System.out.println(Arrays.toString(arr));
+        (new MergeSort()).sorting(arr);
+        System.out.println(Arrays.toString(arr));
     }
 }

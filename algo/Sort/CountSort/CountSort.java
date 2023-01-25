@@ -1,21 +1,20 @@
 package algo.Sort.CountSort;
 
-import algo.Sort.ArrayGen;
+import algo.ArrayGen;
+import algo.Sort.MergeSort.MergeSort;
 
-public class CountSort extends ArrayGen {
-    CountSort(int _sz){
-        super(_sz);
-    }
+import java.util.Arrays;
 
+public class CountSort {
+    CountSort(){}
 
-    void sorting(){
-        System.out.println("=== Count sort ===");
+    void sorting(int[] arr){
         //get min, max value of array
         int arrMax, arrMin;
         arrMax = Integer.MIN_VALUE;
         arrMin = Integer.MAX_VALUE;
 
-        for (int k : this.arr){
+        for (int k : arr){
             arrMax = Math.max(k, arrMax);
             arrMin = Math.min(k, arrMin);
         }
@@ -23,10 +22,11 @@ public class CountSort extends ArrayGen {
         //generate freqency array & count
         int freqSize = arrMax - arrMin  + 1;
         int[] freq = new int[freqSize];
-        for (int k : this.arr){
+        for (int k : arr){
             freq[k - arrMin] ++;
         }
 
+        //map back to result
         int idx = 0;
         for (int i = 0 ; i < freqSize; i++){
             if (freq[i] != 0){
@@ -36,15 +36,13 @@ public class CountSort extends ArrayGen {
                 }
             }
         }
-
-        System.out.println("Done");
     }
 
 
     public static void main(String[] args) {
-        CountSort s = new CountSort(10);
-        s.printAll();
-        s.sorting();
-        s.printAll();
+        int[] arr = (new ArrayGen()).getArr(10);
+        System.out.println(Arrays.toString(arr));
+        (new CountSort()).sorting(arr);
+        System.out.println(Arrays.toString(arr));
     }
 }

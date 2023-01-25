@@ -1,35 +1,41 @@
 package algo.Looping.Subset;
 
-import java.util.Arrays;
+public class Subset<T> {
+    T[] arr;
+    Subset(T[] _arr){
+        arr = _arr;
+    }
 
-public class Subset {
-    void arrayMethod(int n){
-        for (int i = 0 ; i < (int) Math.pow(2,n); i++){
-            for (int j = 0 ; j < n; j++){
-                System.out.print(((1 << j & i) != 0) ? "1 " : "0 ");
-            }
-            System.out.println("");
+    void arrayProcess(boolean[] idxArr){
+        System.out.print("Subset: ");
+        for (int i = 0; i < arr.length; i++)
+            if (idxArr[i]) System.out.print(arr[i] + " ");
+        System.out.println();
+    }
+
+
+    void recursive(boolean[] idxArr, int idx){
+        for (int i = 0 ; i <= 1; i++){
+           idxArr[idx] = (i==1) ? true : false;
+           if (idx == idxArr.length - 1){
+               arrayProcess(idxArr);
+           }
+           else{
+               recursive(idxArr, idx+1);
+           }
         }
     }
 
 
-    void recursiveMethod(int[] arr, int idx){
-        for (int i = 0 ; i <= 1; i++){
-           arr[idx] = i;
-           if (idx == arr.length - 1){
-               System.out.println(Arrays.toString(arr));
-           }
-           else{
-               recursiveMethod(arr, idx+1);
-           }
-        }
+    void doSubset(){
+        recursive(new boolean[arr.length], 0);
     }
 
 
     public static void main(String[] args) {
-        Subset ex = new Subset();
-        ex.arrayMethod(3);
-//        ex.recursiveMethod(new int[3], 0);
+        Integer[] arr = new Integer[]{1,2,3};
+        Subset ex = new Subset<Integer>(arr);
+        ex.doSubset();
     }
 
 }
