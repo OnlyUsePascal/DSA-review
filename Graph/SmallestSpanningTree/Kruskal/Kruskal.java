@@ -2,36 +2,47 @@ package Graph.SmallestSpanningTree.Kruskal;
 
 import Graph.GraphGen.AdjacencyMatrix;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.Scanner;
 
 public class Kruskal {
-    AdjacencyMatrix graph;
-
+    Edge[] edgeList;
+    boolean[] visit;
     Kruskal() throws FileNotFoundException {
-        //adjacency matrix + undirected
         System.out.println("=== kruskal - smallest spanning tree ===");
-        graph = new AdjacencyMatrix("src/Graph/SmallestSpanningTree/input",true);
+
+        //just need to get edge list
+        Scanner reader = new Scanner(new File("src/Graph/SmallestSpanningTree/input"));
+        visit = new boolean[reader.nextInt()];
+        edgeList = new Edge[reader.nextInt()];
+        reader.nextLine();
+
+        for (int i = 0 ; i < edgeList.length; i++){
+            int[] numArr = Arrays.stream(reader.nextLine().split(" ")).
+                            mapToInt(Integer::parseInt).toArray();
+
+            edgeList[i] = new Edge(numArr[0], numArr[1], numArr[2]);
+        }
     }
 
 
-    //way 1: sort all edge
-    // -> take first n-1 edge that connect n nodes
-    void getTree1(){
-        //get list of edge
-        Edge[] edgeList = new Edge[graph.e];
-        int edgeIdx = 0;
-
-        for (int i = 0 ; i < graph.n; i++){
-            for (int j = i+1; j < graph.n; j++){
-                if (graph.graphStore[i][j] != 0){
-                    edgeList[edgeIdx] = new Edge(i,j,graph.graphStore[i][j]);
-                    edgeIdx++;
-                }
-            }
+    class Edge{
+        int n1, n2, weight;
+        Edge(int a, int b, int c){
+            n1 = a; n2 = b; weight = c;
         }
 
+
+        void printAll(){
+            System.out.println(n1 + " " + n2 + " " + weight);
+        }
+    }
+
+
+    void getTree1(){
         //sort
         Arrays.sort(edgeList, new Comparator<Edge>() {
             @Override
@@ -43,8 +54,7 @@ public class Kruskal {
         });
 
         //filter first n-1 edge that connect all
-        boolean visit[] = new boolean[graph.n];
-        int remainingNode = graph.n,
+        int remainingNode = visit.length,
             treeLength = 0;
 
         for (Edge e : edgeList){
@@ -69,17 +79,7 @@ public class Kruskal {
     }
 
 
-    class Edge{
-        int n1, n2, weight;
-        Edge(int a, int b, int c){
-            n1 = a; n2 = b; weight = c;
-        }
 
-
-        void printAll(){
-            System.out.println(n1 + " " + n2 + " " + weight);
-        }
-    }
 
 
 

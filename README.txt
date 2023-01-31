@@ -1,6 +1,31 @@
 Update notes
 ---
-23.01.25
+*** 31.01.26
+- AVL binary tree
+
+*** 23.01.26
+- Classic BST
+    + print all
+
+- queue
+    + peek
+    + is empty
+
+- heap
+    + replace element
+
+- topo short
+    + generalize
+
+- kruskal
+    + new implement
+
+- graph
+    + fix num array transform
+
+
+
+*** 23.01.25
 
 Changes
 - Looping

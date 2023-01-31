@@ -34,13 +34,12 @@ public class Prim {
         nodeStack.add(new Node(0,0));
 
         while (!nodeStack.isEmpty()){
+            //retrieve the node that cost the least when expand to it.
             Node curNode = nodeStack.peek();
             nodeStack.remove();
-//            System.out.println("--> " + curNode.vertex + " " + curNode.weight);
 
             if (!visit[curNode.vertex]){
                 //add cur node to tree
-//                System.out.println("Added");
                 visit[curNode.vertex] = true;
                 treeLength += curNode.weight;
 
@@ -48,7 +47,6 @@ public class Prim {
                 AdjacencyList.Node child = graph.graphStore[curNode.vertex];
                 while (child != null){
                     if (!visit[child.vertex]){
-//                        System.out.println("+ " + child.vertex);
                         nodeStack.add(new Node(child.vertex, child.weight));
                     }
                     child = child.next;

@@ -1,10 +1,10 @@
 package data_structure.BinarySearchTree.Classic;
+//import javafx.util.*;
 
-//operation
-//insert
-//remove
-//search
-public class ClassicBST_hasParent {
+import java.util.LinkedList;
+import java.util.Queue;
+
+public class ClassicBST {
     public class Node{
         public int data;
         public Node left, right, parent;
@@ -20,22 +20,21 @@ public class ClassicBST_hasParent {
     public Node head;
     public int size;
 
-    public ClassicBST_hasParent(){
+    public ClassicBST(){
         this.size = 0;
         this.head = null;
     }
 
 
     public void insert(int _data){
-        System.out.println("=== Insert data ===");
-
+        System.out.println("=== Add data ===");
         if (this.head == null){
             this.head = new Node(_data);
         }
         else{
             Node cur = this.head;
 
-            while (cur != null){
+            while (true){
                 if (_data == cur.data){
                     System.out.println("Already in BST");
                     return;
@@ -59,9 +58,8 @@ public class ClassicBST_hasParent {
             }
 
         }
-
-        System.out.println("Added value: " + _data);
         this.size++;
+        System.out.println("Done");
     }
 
 
@@ -107,6 +105,7 @@ public class ClassicBST_hasParent {
                 head = child;
             }
             else{
+                //parent's child = cur's child
                 if (cur.parent.left == cur){
                     cur.parent.left = child;
                 }
@@ -138,31 +137,30 @@ public class ClassicBST_hasParent {
     }
 
 
-    public void print(Node _node){
-        if (_node == null) return;
-
-        print(_node.left);
-        System.out.print(_node.data + " ");
-        if (_node.parent != null){
-            System.out.println(_node.parent.data);
+    void printTree(Node currPtr, String indent, boolean last) {
+        if (currPtr != null) {
+            System.out.print(indent);
+            if (last) {
+                System.out.print("R----");
+                indent += "   ";
+            } else {
+                System.out.print("L----");
+                indent += "|  ";
+            }
+            System.out.println(currPtr.data);
+            printTree(currPtr.left, indent, false);
+            printTree(currPtr.right, indent, true);
         }
-        else{
-            System.out.println("");
-        }
-
-        print(_node.right);
     }
 
 
     public void printAll(){
-        System.out.println("=== Print all ===");
-        print(this.head);
-        System.out.println("");
+        printTree(head, "", true);
     }
 
 
     public static void main(String[] args) {
-        ClassicBST_hasParent s = new ClassicBST_hasParent();
+        ClassicBST s = new ClassicBST();
 
         s.insert(7);
         s.insert(3);
@@ -171,7 +169,7 @@ public class ClassicBST_hasParent {
         s.insert(9);
         s.insert(12);
 
-        s.remove(11);
+//        s.remove(11);
         s.printAll();
 //        s.search(3);
     }

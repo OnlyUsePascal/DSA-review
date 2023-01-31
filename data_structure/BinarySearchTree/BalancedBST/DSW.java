@@ -1,11 +1,8 @@
 package data_structure.BinarySearchTree.BalancedBST;
 import data_structure.BinarySearchTree.Classic.*;
 
-//property: 
-
-
-
-public class DSW extends ClassicBST_hasParent {
+//not reliable
+public class DSW extends ClassicBST {
     DSW(){
 //        super();
     }

@@ -2,6 +2,8 @@ package data_structure.Heap;
 
 import algo.*;
 
+import java.util.Arrays;
+
 public class Heap {
     //default max heap
     public int[] arr;
@@ -12,6 +14,12 @@ public class Heap {
         lastIdx = -1;
     }
 
+    void replaceElement(int i1, int i2){
+        int mid = arr[i1];
+        arr[i1] = arr[i2];
+        arr[i2] = mid;
+    }
+
 
     public void insertHeap(int _input){
         System.out.println("==== Insert element ====");
@@ -20,16 +28,14 @@ public class Heap {
             return;
         }
 
-        //put element in last position, then switch from bottom to top
+        //put element in last position,
         lastIdx++;
         arr[lastIdx] = _input;
 
+        // then switch from bottom to top
         int idx = lastIdx;
         while (idx > 0 && arr[idx] > arr[idx/2]){
-            int mid = arr[idx];
-            arr[idx] = arr[idx/2];
-            arr[idx/2] = mid;
-
+            replaceElement(idx, idx/2);
             idx /= 2;
         }
         System.out.println("Inserted: " + _input);
@@ -62,10 +68,7 @@ public class Heap {
 
             //replace
             if (idx != mid){
-                int mid1 = arr[idx];
-                arr[idx] = arr[mid];
-                arr[mid] = mid1;
-
+                replaceElement(idx, mid);
                 idx = mid;
             }
             else{

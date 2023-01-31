@@ -16,7 +16,6 @@ public class Floyd {
 
     int getPlus(int a, int b){
         //handling overflow
-        long n1 = a, n2 = b;
         return ((long) a + b > (long) Integer.MAX_VALUE) ?
                 Integer.MAX_VALUE : a + b;
     }

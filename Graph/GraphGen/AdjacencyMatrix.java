@@ -20,11 +20,8 @@ public class AdjacencyMatrix {
         reader.nextLine();
         for (int i = 0 ; i < e; i++){
             //invert string to number
-            String[] strArr = reader.nextLine().split(" ");
-            int[] intArr = new int[3];
-            for (int j = 0 ; j < 3; j++){
-                intArr[j] = Integer.parseInt(strArr[j]);
-            }
+            int[] intArr = Arrays.stream(reader.nextLine().split(" ")).
+                    mapToInt(Integer::parseInt).toArray();
 
             //add node to store
             graphStore[intArr[0]][intArr[1]] = intArr[2];

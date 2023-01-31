@@ -15,43 +15,42 @@ public class QueueLinkedList <T>{
         Node next, prev;
 
         Node(T _data){
-            this.data = _data;
-            this.next = null;
-            this.prev = null;
+            data = _data;
+            next = null;
+            prev = null;
         }
     }
 
     Node left, right;
-    int size, max;
+    int size;
 
 
     QueueLinkedList(){
         System.out.printf("=== Queue initiated ===");
-        this.left = null; this.right = null;
-        this.size = 0;
-        this.max = 5;
+        left = null; right = null;
+        size = 0;
+    }
+
+
+    boolean isEmpty(){
+        return size == 0;
     }
 
 
     void enQueue(T _data){
         System.out.println("=== Enqueue ===");
 
-        if (size >= max){
-            System.out.println("Queue is full");
-            return;
-        }
-
         Node newNode = new Node(_data);
-        if (this.left == null) { //queue is empty
-            this.left = newNode;
-            this.right = this.left;
+        if (isEmpty()) { //queue is empty
+            left = newNode;
+            right = left;
         }
         else{
-            newNode.next = this.left;
-            this.left.prev = newNode;
-            this.left = newNode;
+            newNode.next = left;
+            left.prev = newNode;
+            left = newNode;
         }
-        this.size++;
+        size++;
         System.out.println("Added");
     }
 
@@ -59,37 +58,48 @@ public class QueueLinkedList <T>{
     void deQueue(){
         System.out.println("=== Dequeue ===");
 
-        if (this.left == null){
+        if (isEmpty()){
             System.out.println("Queue is empty");
             return;
         }
 
-        if (this.size == 1){ //reset both ends
-            this.left = null;
-            this.right = null;
+        if (size == 1){ //reset both ends
+            left = null;
+            right = null;
         }
-        else{   //step back right node
-            this.right = this.right.prev;
-            this.right.next = null;
+        else{   //step back 1 node
+            right = right.prev;
+            right.next = null;
         }
 
-        this.size--;
+        size--;
         System.out.println("Deleted");
+    }
+
+
+    T peekFront(){
+        if (isEmpty()) return null;
+        return right.data;
+    }
+
+
+    T peekBack(){
+        if (isEmpty()) return null;
+        return left.data;
     }
 
 
     void printAll(){
         System.out.println("=== Print queue ===");
-        if (this.size == 0){
+        if (isEmpty()){
             System.out.println("queue is empty");
+            return;
         }
-        else{
-            Node cur = this.left;
-            while (cur != null){
-                System.out.print(cur.data + " ");
-                cur = cur.next;
-            }
-            System.out.printf("");
+
+        Node cur = left;
+        while (cur != null){
+            System.out.println(cur.data);
+            cur = cur.next;
         }
     }
 
@@ -98,16 +108,12 @@ public class QueueLinkedList <T>{
         QueueLinkedList<Integer> ex = new QueueLinkedList<Integer>();
         ex.enQueue(10);
         ex.enQueue(13);
-//        ex.enQueue(14);
-//        ex.enQueue(16);
-//        ex.enQueue(19);
-//        ex.enQueue(15);
+        ex.enQueue(14);
+
+        ex.printAll();
 
         ex.deQueue();
-        ex.deQueue();
-        ex.deQueue();
         ex.printAll();
-//        ex.
     }
 
 }

@@ -15,56 +15,71 @@ public class QueueArray <T>{
 
     QueueArray(int _size){
         System.out.println("=== Queue initiated ===");
-        this.left = 0;
-        this.right = -1;
-        this.size = 0;
-        this.arr = (T[]) new Object[_size];
+        left = 0;
+        right = -1;
+        size = 0;
+        arr = (T[]) new Object[_size];
+    }
+
+
+    boolean isEmpty(){
+        return size == 0;
     }
 
 
     void enQueue(T _data){
         System.out.println("=== Enqueue ===");
-        if (this.size == this.arr.length){
+        if (size == arr.length){
             System.out.println("Queue is full");
             return;
         }
 
-        this.right = (this.right + 1) % this.arr.length;
-        this.arr[this.right] = _data;
+        right = (right + 1) % arr.length;
+        arr[right] = _data;
 
-        this.size++;
+        size++;
         System.out.println("Added value: " + _data);
     }
 
 
     void deQueue(){
         System.out.println("=== Dequeue ===");
-        if (this.size == 0){
+        if (isEmpty()){
             System.out.println("Queue is empty");
             return;
         }
 
-        this.left = (this.left + 1) % this.arr.length;
+        left = (left + 1) % arr.length;
 
-        this.size--;
+        size--;
         System.out.println("Deleted");
+    }
+
+
+    T peekFront(){
+        if (isEmpty()) return null;
+        return arr[left];
+    }
+
+
+    T peekBack(){
+        if (isEmpty()) return null;
+        return arr[right];
     }
 
 
     void printAll(){
         System.out.println("=== Print all ===");
-        if (this.size == 0){
+        if (isEmpty()){
             System.out.println("Queue is empty");
             return;
         }
 
-        int idx = this.left;
-        for (int i = 0; i < this.size; i++){
-            System.out.println(this.arr[idx] + " ");
-            idx = (idx + 1) % this.arr.length;
+        int idx = left;
+        for (int i = 0; i < size; i++){
+            System.out.println(arr[idx]);
+            idx = (idx + 1) % arr.length;
         }
-
-        System.out.println("");
     }
 
 

@@ -1,6 +1,7 @@
 package Graph.GraphGen;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class AdjacencyList {
@@ -37,11 +38,8 @@ public class AdjacencyList {
         reader.nextLine();
         for (int i = 0 ; i < e; i++){
             //invert string to number
-            String[] strArr = reader.nextLine().split(" ");
-            int[] intArr = new int[3];
-            for (int j = 0 ; j < 3; j++){
-                intArr[j] = Integer.parseInt(strArr[j]);
-            }
+            int[] intArr = Arrays.stream(reader.nextLine().split(" ")).
+                            mapToInt(Integer::parseInt).toArray();
 
             //add node to list from input
             Node node = new Node(intArr[1], intArr[2]);
